@@ -76,8 +76,12 @@ if (${LINUX})
     add_dependencies(benchmark libwh)
 endif ()
 
+# Load this dependency via FetchContent
+include(${PROJECT_SOURCE_DIR}/competitors/exotic-hashing.cmake)
+
 target_link_libraries(benchmark
         PRIVATE ${CMAKE_SOURCE_DIR}/fast64/target/release/libfast64.a
         PRIVATE tsl::robin_map
         PRIVATE Threads::Threads dtl
-        PRIVATE dl)
+        PRIVATE dl
+        PRIVATE ${EXOTIC_HASHING_LIBRARY})
