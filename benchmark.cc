@@ -17,6 +17,7 @@
 #include "benchmarks/benchmark_ts.h"
 #include "benchmarks/benchmark_wormhole.h"
 #include "competitors/binary_search.h"
+#include "competitors/compacted_mwhc.h"
 #include "competitors/hash.h"
 #include "competitors/mwhc.h"
 #include "competitors/stanford_hash.h"
@@ -60,7 +61,10 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("FAST", benchmark_32_fast(benchmark, pareto));
   check_only("ALEX", benchmark_32_alex(benchmark, pareto));
   check_only("RMI_CPP", benchmark_32_rmi_cpp(benchmark, pareto));
+
   check_only("MWHC", benchmark.template Run<MWHC<uint32_t>>());
+  check_only("CompactedMWHC",
+             benchmark.template Run<CompactedMWHC<uint32_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_32_fst(benchmark, pareto));
@@ -91,7 +95,10 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("FAST", benchmark_64_fast(benchmark, pareto));
   check_only("ALEX", benchmark_64_alex(benchmark, pareto));
   check_only("RMI_CPP", benchmark_64_rmi_cpp(benchmark, pareto));
+
   check_only("MWHC", benchmark.template Run<MWHC<uint64_t>>());
+  check_only("CompactedMWHC",
+             benchmark.template Run<CompactedMWHC<uint64_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_64_fst(benchmark, pareto));
