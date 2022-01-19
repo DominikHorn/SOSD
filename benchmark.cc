@@ -22,6 +22,7 @@
 #include "competitors/hash.h"
 #include "competitors/hollow_trie.h"
 #include "competitors/mwhc.h"
+#include "competitors/simple_hollow_trie.h"
 #include "competitors/stanford_hash.h"
 #include "config.h"
 #include "searches/branching_binary_search.h"
@@ -68,6 +69,8 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint32_t>>());
   check_only("CompactTrie", benchmark.template Run<CompactTrie<uint32_t>>());
+  check_only("SimpleHollowTrie",
+             benchmark.template Run<SimpleHollowTrie<uint32_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint32_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
@@ -104,6 +107,8 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint64_t>>());
   check_only("CompactTrie", benchmark.template Run<CompactTrie<uint64_t>>());
+  check_only("SimpleHollowTrie",
+             benchmark.template Run<SimpleHollowTrie<uint64_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint64_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
