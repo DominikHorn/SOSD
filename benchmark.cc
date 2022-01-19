@@ -6,6 +6,7 @@
 #include "benchmarks/benchmark_art.h"
 #include "benchmarks/benchmark_btree.h"
 #include "benchmarks/benchmark_cht.h"
+#include "benchmarks/benchmark_compactedcompacttrie.h"
 #include "benchmarks/benchmark_compacttrie.h"
 #include "benchmarks/benchmark_fast64.h"
 #include "benchmarks/benchmark_fst.h"
@@ -69,6 +70,8 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint32_t>>());
   check_only("CompactTrie", benchmark_32_compacttrie(benchmark, pareto));
+  check_only("CompactedCompactTrie",
+             benchmark_32_compactedcompacttrie(benchmark, pareto));
   check_only("SimpleHollowTrie",
              benchmark.template Run<SimpleHollowTrie<uint32_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint32_t>>());
@@ -107,6 +110,8 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint64_t>>());
   check_only("CompactTrie", benchmark_64_compacttrie(benchmark, pareto));
+  check_only("CompactedCompactTrie",
+             benchmark_64_compactedcompacttrie(benchmark, pareto));
   check_only("SimpleHollowTrie",
              benchmark.template Run<SimpleHollowTrie<uint64_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint64_t>>());
