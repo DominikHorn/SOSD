@@ -17,6 +17,7 @@
 #include "benchmarks/benchmark_ts.h"
 #include "benchmarks/benchmark_wormhole.h"
 #include "competitors/binary_search.h"
+#include "competitors/compact_trie.h"
 #include "competitors/compacted_mwhc.h"
 #include "competitors/hash.h"
 #include "competitors/mwhc.h"
@@ -65,6 +66,7 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("MWHC", benchmark.template Run<MWHC<uint32_t>>());
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint32_t>>());
+  check_only("CompactTrie", benchmark.template Run<CompactTrie<uint32_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_32_fst(benchmark, pareto));
@@ -99,6 +101,7 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("MWHC", benchmark.template Run<MWHC<uint64_t>>());
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint64_t>>());
+  check_only("CompactTrie", benchmark.template Run<CompactTrie<uint64_t>>());
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_64_fst(benchmark, pareto));
