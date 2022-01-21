@@ -10,7 +10,7 @@
 template <class KeyType, int size_scale>
 class CompactedCompactTrie : public Competitor {
   exotic_hashing::CompactedCompactTrie<
-      KeyType, exotic_hashing::support::FixedBitConverter<KeyType>>
+      KeyType, exotic_hashing::support::FixedBitConverter<KeyType>, true>
       compact_trie;
   size_t keycnt;
 
