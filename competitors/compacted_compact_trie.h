@@ -11,7 +11,7 @@ template <class KeyType, int size_scale>
 class CompactedCompactTrie : public Competitor {
   exotic_hashing::CompactedCompactTrie<
       KeyType, exotic_hashing::support::FixedBitConverter<KeyType>, true>
-      compact_trie;
+      trie;
   size_t keycnt;
 
  public:
@@ -25,20 +25,19 @@ class CompactedCompactTrie : public Competitor {
       keys.push_back(kv.key);
     }
 
-    keycnt = keys.size();
+    keycnt = data.size();
 
-    return util::timing(
-        [&] { compact_trie.construct(keys.begin(), keys.end()); });
+    return util::timing([&] { trie.construct(keys.begin(), keys.end()); });
   }
 
   SearchBound EqualityLookup(const KeyType lookup_key) const {
     // special case, constexpr ensures that the compiler evaluates this
     // expression
     if constexpr (size_scale == 1) {
-      const auto rank = compact_trie(lookup_key);
+      const auto rank = trie(lookup_key);
       return {rank, rank};
     } else {
-      const auto guess = compact_trie(lookup_key) * size_scale;
+      const auto guess = trie(lookup_key) * size_scale;
 
       const size_t error = size_scale;
       const size_t start = (guess >= error) * (guess - error);
@@ -48,9 +47,9 @@ class CompactedCompactTrie : public Competitor {
     }
   }
 
-  std::string name() const { return "CompactTrie"; }
+  std::string name() const { return "CompactedCompactTrie"; }
 
-  std::size_t size() const { return compact_trie.byte_size(); }
+  std::size_t size() const { return trie.byte_size(); }
 
   bool applicable(bool _unique, const std::string& data_filename) {
     return true;
