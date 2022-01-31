@@ -5,6 +5,7 @@
 #include "benchmarks/benchmark_alex.h"
 #include "benchmarks/benchmark_art.h"
 #include "benchmarks/benchmark_btree.h"
+#include "benchmarks/benchmark_btree_inner_node.h"
 #include "benchmarks/benchmark_cht.h"
 #include "benchmarks/benchmark_fast64.h"
 #include "benchmarks/benchmark_fst.h"
@@ -59,6 +60,8 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("FAST", benchmark_32_fast(benchmark, pareto));
   check_only("ALEX", benchmark_32_alex(benchmark, pareto));
   check_only("RMI_CPP", benchmark_32_rmi_cpp(benchmark, pareto));
+  check_only("BTreeInnerNode",
+             benchmark_32_btree_inner_node(benchmark, pareto));
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_32_fst(benchmark, pareto));
@@ -89,6 +92,8 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("FAST", benchmark_64_fast(benchmark, pareto));
   check_only("ALEX", benchmark_64_alex(benchmark, pareto));
   check_only("RMI_CPP", benchmark_64_rmi_cpp(benchmark, pareto));
+  check_only("BTreeInnerNode",
+             benchmark_64_btree_inner_node(benchmark, pareto));
 #ifndef __APPLE__
 #ifndef DISABLE_FST
   check_only("FST", benchmark_64_fst(benchmark, pareto));
