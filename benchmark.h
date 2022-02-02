@@ -7,6 +7,7 @@
 #include <dtl/thread.hpp>
 #include <fstream>
 #include <iostream>
+#include <iterator>
 #include <sstream>
 
 #include "config.h"
@@ -273,6 +274,16 @@ class Benchmark {
           ++iter;
         }
         if (result != expected) {
+          iter = std::lower_bound(
+              data_.begin(), data_.end(), lookup_key,
+              [](const Row<KeyType>& lhs, const KeyType lookup_key) {
+                return lhs.key < lookup_key;
+              });
+
+          std::cout << "run failed: [" << bound.start << ", " << bound.stop
+                    << ") predicted but key was at "
+                    << std::distance(data_.begin(), iter) << std::endl;
+
           run_failed = true;
           return;
         }
