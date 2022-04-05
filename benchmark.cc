@@ -2,29 +2,14 @@
 
 #include <cstdlib>
 
-#include "benchmarks/benchmark_alex.h"
-#include "benchmarks/benchmark_art.h"
-#include "benchmarks/benchmark_btree.h"
-#include "benchmarks/benchmark_cht.h"
 #include "benchmarks/benchmark_compactedcompacttrie.h"
 #include "benchmarks/benchmark_compacttrie.h"
-#include "benchmarks/benchmark_fast64.h"
 #include "benchmarks/benchmark_fst.h"
-#include "benchmarks/benchmark_ibtree.h"
-#include "benchmarks/benchmark_pgm.h"
-#include "benchmarks/benchmark_rbs.h"
 #include "benchmarks/benchmark_rmi.h"
-#include "benchmarks/benchmark_rmi_alt.h"
-#include "benchmarks/benchmark_rs.h"
-#include "benchmarks/benchmark_ts.h"
-#include "benchmarks/benchmark_wormhole.h"
-#include "competitors/binary_search.h"
 #include "competitors/compacted_mwhc.h"
-#include "competitors/hash.h"
 #include "competitors/hollow_trie.h"
 #include "competitors/mwhc.h"
 #include "competitors/simple_hollow_trie.h"
-#include "competitors/stanford_hash.h"
 #include "config.h"
 #include "searches/branching_binary_search.h"
 #include "searches/branchless_binary_search.h"
@@ -32,6 +17,7 @@
 #include "searches/linear_search.h"
 #include "util.h"
 #include "utils/cxxopts.hpp"
+
 using namespace std;
 
 #define check_only(tag, code)        \
@@ -69,25 +55,9 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("MWHC", benchmark.template Run<MWHC<uint32_t>>());
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint32_t>>());
-  check_only("CompactTrie", benchmark_32_compacttrie(benchmark, pareto));
-  check_only("CompactedCompactTrie",
-             benchmark_32_compactedcompacttrie(benchmark, pareto));
   check_only("SimpleHollowTrie",
              benchmark.template Run<SimpleHollowTrie<uint32_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint32_t>>());
-#ifndef __APPLE__
-#ifndef DISABLE_FST
-  check_only("FST", benchmark_32_fst(benchmark, pareto));
-#endif
-  check_only("Wormhole", benchmark_32_wormhole(benchmark, pareto));
-#endif
-
-  if (benchmark.uses_binary_search()) {
-    check_only("RBS", benchmark_32_rbs(benchmark, pareto));
-    check_only("CuckooMap", benchmark.template Run<CuckooHash>());
-    check_only("RobinHash", benchmark.template Run<RobinHash<uint32_t>>());
-    check_only("BS", benchmark.template Run<BinarySearch<uint32_t>>());
-  }
 }
 
 template <class Benchmark>
@@ -109,24 +79,9 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("MWHC", benchmark.template Run<MWHC<uint64_t>>());
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint64_t>>());
-  check_only("CompactTrie", benchmark_64_compacttrie(benchmark, pareto));
-  check_only("CompactedCompactTrie",
-             benchmark_64_compactedcompacttrie(benchmark, pareto));
   check_only("SimpleHollowTrie",
              benchmark.template Run<SimpleHollowTrie<uint64_t>>());
   check_only("HollowTrie", benchmark.template Run<HollowTrie<uint64_t>>());
-#ifndef __APPLE__
-#ifndef DISABLE_FST
-  check_only("FST", benchmark_64_fst(benchmark, pareto));
-#endif
-  check_only("Wormhole", benchmark_64_wormhole(benchmark, pareto));
-#endif
-
-  if (benchmark.uses_binary_search()) {
-    check_only("RBS", benchmark_64_rbs(benchmark, pareto));
-    check_only("RobinHash", benchmark.template Run<RobinHash<uint64_t>>());
-    check_only("BS", benchmark.template Run<BinarySearch<uint64_t>>());
-  }
 }
 
 int main(int argc, char* argv[]) {
