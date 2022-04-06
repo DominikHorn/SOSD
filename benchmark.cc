@@ -6,6 +6,7 @@
 #include "benchmarks/benchmark_compacttrie.h"
 #include "benchmarks/benchmark_fst.h"
 #include "benchmarks/benchmark_rmi.h"
+#include "benchmarks/benchmark_sfmwhc.h"
 #include "competitors/compacted_mwhc.h"
 #include "competitors/hollow_trie.h"
 #include "competitors/mwhc.h"
@@ -53,6 +54,7 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("RMI_CPP", benchmark_32_rmi_cpp(benchmark, pareto));
 
   check_only("MWHC", benchmark.template Run<MWHC<uint32_t>>());
+  check_only("SFMWHC", benchmark_32_sfmwhc(benchmark, pareto));
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint32_t>>());
   check_only("SimpleHollowTrie",
@@ -80,6 +82,7 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
   check_only("RMI_CPP", benchmark_64_rmi_cpp(benchmark, pareto));
 
   check_only("MWHC", benchmark.template Run<MWHC<uint64_t>>());
+  check_only("SFMWHC", benchmark_64_sfmwhc(benchmark, pareto));
   check_only("CompactedMWHC",
              benchmark.template Run<CompactedMWHC<uint64_t>>());
   check_only("SimpleHollowTrie",
