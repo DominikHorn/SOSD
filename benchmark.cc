@@ -2,11 +2,21 @@
 
 #include <cstdlib>
 
+#include "benchmarks/benchmark_alex.h"
+#include "benchmarks/benchmark_art.h"
+#include "benchmarks/benchmark_btree.h"
+#include "benchmarks/benchmark_cht.h"
 #include "benchmarks/benchmark_compactedcompacttrie.h"
 #include "benchmarks/benchmark_compacttrie.h"
+#include "benchmarks/benchmark_fast64.h"
 #include "benchmarks/benchmark_fst.h"
+#include "benchmarks/benchmark_ibtree.h"
+#include "benchmarks/benchmark_pgm.h"
 #include "benchmarks/benchmark_rmi.h"
+#include "benchmarks/benchmark_rmi_alt.h"
+#include "benchmarks/benchmark_rs.h"
 #include "benchmarks/benchmark_sfmwhc.h"
+#include "benchmarks/benchmark_ts.h"
 #include "competitors/compacted_mwhc.h"
 #include "competitors/hollow_trie.h"
 #include "competitors/mwhc.h"
