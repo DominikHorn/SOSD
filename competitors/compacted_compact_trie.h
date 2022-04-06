@@ -55,5 +55,5 @@ class CompactedCompactTrie : public Competitor {
     return true;
   }
 
-  int variant() const { return 0; }
+  int variant() const { return size_scale; }
 };
