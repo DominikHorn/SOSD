@@ -40,7 +40,7 @@ class CompactTrie : public Competitor {
       const auto guess = trie(lookup_key) * size_scale;
 
       const size_t error = size_scale;
-      const size_t start = (guess >= error) * (guess - error);
+      const size_t start = guess - std::min(guess, error);
       const size_t stop = std::min(guess + error + 1, keycnt);
 
       return {start, stop};
