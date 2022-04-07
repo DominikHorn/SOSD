@@ -30,13 +30,13 @@ class SFMWHC : public Competitor {
         const auto prev_key = data[prev_ind].key >> Shift;
         if (key == prev_key) continue;
 
-        error = std::max(error, i - prev_ind);
+        error = std::max(error, i - prev_ind + 1);
 
         prev_ind = i;
         keys.push_back(key);
         offsets.push_back(prev_ind);
       }
-      error = std::max(error, data.size() - prev_ind);
+      error = std::max(error, data.size() - prev_ind + 1);
 
       // TODO: tmp
       std::cout << "Found error: " << error << ", using shift: " << Shift
