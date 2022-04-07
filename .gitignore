@@ -6,6 +6,7 @@ data/
 *~
 \#*
 *ipynb*
+!*.ipynb
 competitors/rmi/*.h
 competitors/rmi/*.cpp
 results/*.txt
