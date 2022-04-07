@@ -36,7 +36,7 @@ class SFMWHC : public Competitor {
         keys.push_back(key);
         offsets.push_back(prev_ind);
       }
-      error = std::max(error, keys.size() - prev_ind);
+      error = std::max(error, data.size() - prev_ind);
 
       // TODO: tmp
       std::cout << "Found error: " << error << ", using shift: " << Shift
