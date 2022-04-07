@@ -11,7 +11,7 @@
 template <class KeyType, size_t Shift>
 class SFMWHC : public Competitor {
   exotic_hashing::CompressedSFMWHC<KeyType> mwhc;
-  size_t error = 0;
+  size_t error = 0, key_cnt = 0;
 
  public:
   uint64_t Build(const std::vector<KeyValue<KeyType>>& data) {
@@ -35,8 +35,18 @@ class SFMWHC : public Competitor {
         prev_ind = i;
         keys.push_back(key);
         offsets.push_back(prev_ind);
+        // TODO: tmp
+        if (prev_ind > data.size())
+          std::cerr << "prev_ind > data.size(): " << prev_ind << ", "
+                    << data.size() << std::endl;
+      }
+      if (data.back().key >> Shift != data[prev_ind].key >> Shift) {
+        prev_ind = data.size() - 1;
+        keys.push_back(data.back().key);
+        offsets.push_back(prev_ind);
       }
       error = std::max(error, data.size() - prev_ind + 1);
+      key_cnt = data.size();
 
       // TODO: tmp
       std::cout << "Found error: " << error << ", using shift: " << Shift
@@ -49,7 +59,9 @@ class SFMWHC : public Competitor {
 
   SearchBound EqualityLookup(const KeyType lookup_key) const {
     const auto rank = mwhc(lookup_key >> Shift);
-    return {rank, rank + error};
+    if (rank > key_cnt)
+      std::cerr << "rank > key_cnt: " << rank << ", " << key_cnt << std::endl;
+    return {rank, std::min(key_cnt, rank + error)};
   }
 
   std::string name() const { return "SFMWHC"; }
