@@ -57,7 +57,7 @@ class SFMWHC : public Competitor {
   std::size_t size() const { return mwhc.byte_size(); }
 
   bool applicable(bool _unique, const std::string& data_filename) {
-    return _unique;
+    return true;
   }
 
   int variant() const { return Shift; }
