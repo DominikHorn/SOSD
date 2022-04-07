@@ -14,8 +14,8 @@ void benchmark_32_sfmwhc(sosd::Benchmark<uint32_t, Searcher>& benchmark,
     benchmark.template Run<SFMWHC<uint32_t, 4>>();
     benchmark.template Run<SFMWHC<uint32_t, 8>>();
     benchmark.template Run<SFMWHC<uint32_t, 16>>();
+    benchmark.template Run<SFMWHC<uint32_t, 18>>();
     benchmark.template Run<SFMWHC<uint32_t, 20>>();
-    benchmark.template Run<SFMWHC<uint32_t, 22>>();
   }
 }
 
@@ -29,8 +29,16 @@ void benchmark_64_sfmwhc(sosd::Benchmark<uint64_t, Searcher>& benchmark,
     benchmark.template Run<SFMWHC<uint64_t, 4>>();
     benchmark.template Run<SFMWHC<uint64_t, 8>>();
     benchmark.template Run<SFMWHC<uint64_t, 16>>();
+    benchmark.template Run<SFMWHC<uint64_t, 18>>();
     benchmark.template Run<SFMWHC<uint64_t, 20>>();
     benchmark.template Run<SFMWHC<uint64_t, 22>>();
+    benchmark.template Run<SFMWHC<uint64_t, 24>>();
+    benchmark.template Run<SFMWHC<uint64_t, 26>>();
+    benchmark.template Run<SFMWHC<uint64_t, 28>>();
+    benchmark.template Run<SFMWHC<uint64_t, 30>>();
+    benchmark.template Run<SFMWHC<uint64_t, 32>>();
+    benchmark.template Run<SFMWHC<uint64_t, 34>>();
+    benchmark.template Run<SFMWHC<uint64_t, 36>>();
   }
 }
 
