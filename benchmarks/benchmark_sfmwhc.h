@@ -39,6 +39,12 @@ void benchmark_64_sfmwhc(sosd::Benchmark<uint64_t, Searcher>& benchmark,
     benchmark.template Run<SFMWHC<uint64_t, 32>>();
     benchmark.template Run<SFMWHC<uint64_t, 34>>();
     benchmark.template Run<SFMWHC<uint64_t, 36>>();
+    benchmark.template Run<SFMWHC<uint64_t, 38>>();
+    benchmark.template Run<SFMWHC<uint64_t, 40>>();
+    benchmark.template Run<SFMWHC<uint64_t, 42>>();
+    benchmark.template Run<SFMWHC<uint64_t, 44>>();
+    benchmark.template Run<SFMWHC<uint64_t, 46>>();
+    benchmark.template Run<SFMWHC<uint64_t, 48>>();
   }
 }
 
