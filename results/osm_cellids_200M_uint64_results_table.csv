@@ -123,3 +123,13 @@ RBS,10,685.183,4100,270487645,BinarySearch,osm_cellids_200M_uint64
 RBS,8,720.244,1028,271863183,BinarySearch,osm_cellids_200M_uint64
 RobinHash,0,93.9928,8589934592,17801921824,BinarySearch,osm_cellids_200M_uint64
 BinarySearch,0,755.917,0,0,BinarySearch,osm_cellids_200M_uint64
+CHT,10,209.516,8821186640,27189928507,BinarySearch,osm_cellids_200M_uint64
+CHT,9,223.343,775348048,8092156012,BinarySearch,osm_cellids_200M_uint64
+CHT,8,236.505,378371152,5502939861,BinarySearch,osm_cellids_200M_uint64
+CHT,7,268.981,119397712,4690149033,BinarySearch,osm_cellids_200M_uint64
+CHT,6,284.754,61699920,4836339215,BinarySearch,osm_cellids_200M_uint64
+CHT,5,322.277,15633360,4906388976,BinarySearch,osm_cellids_200M_uint64
+CHT,4,342.433,7829200,4810839305,BinarySearch,osm_cellids_200M_uint64
+CHT,3,342.041,7829200,4822929004,BinarySearch,osm_cellids_200M_uint64
+CHT,2,344.575,7829200,4811824225,BinarySearch,osm_cellids_200M_uint64
+CHT,1,342.642,7829200,4797236516,BinarySearch,osm_cellids_200M_uint64
