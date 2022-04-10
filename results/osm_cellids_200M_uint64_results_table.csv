@@ -93,16 +93,6 @@ ALEX,1024,557.866,10427296,200261146,BinarySearch,osm_cellids_200M_uint64
 ALEX,2048,591.943,5792904,99436395,BinarySearch,osm_cellids_200M_uint64
 ALEX,4096,627.028,3541960,61488034,BinarySearch,osm_cellids_200M_uint64
 ALEX,8192,671.32,2176256,42234411,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,1,1063.98,3104,37528233082,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,2,1003.92,6176,37479145035,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,3,945.453,12320,37466365746,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,4,870.588,24608,37417398027,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,5,809.027,49184,37472717471,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,6,752.789,98336,37400823558,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,7,699.103,196640,37355053305,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,8,640.237,393248,37442948464,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,9,599.501,786464,37515519173,BinarySearch,osm_cellids_200M_uint64
-RMICppRobust,10,541.14,1572896,37418272168,BinarySearch,osm_cellids_200M_uint64
 Wormhole,512,1063.96,12499968,3388,BinarySearch,osm_cellids_200M_uint64
 Wormhole,1024,1010.79,6249984,1119,BinarySearch,osm_cellids_200M_uint64
 Wormhole,2048,1001.86,3124992,720,BinarySearch,osm_cellids_200M_uint64

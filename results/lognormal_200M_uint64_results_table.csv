@@ -83,16 +83,6 @@ ALEX,1024,503.784,5603448,138596512,BinarySearch,lognormal_200M_uint64
 ALEX,2048,544.738,2818304,69018514,BinarySearch,lognormal_200M_uint64
 ALEX,4096,591.155,1676464,46176566,BinarySearch,lognormal_200M_uint64
 ALEX,8192,643.239,1108144,34925273,BinarySearch,lognormal_200M_uint64
-RMICppRobust,1,989.252,3104,37349146885,BinarySearch,lognormal_200M_uint64
-RMICppRobust,2,847.984,6176,37421325443,BinarySearch,lognormal_200M_uint64
-RMICppRobust,3,746.303,12320,37288134634,BinarySearch,lognormal_200M_uint64
-RMICppRobust,4,611.061,24608,37244937168,BinarySearch,lognormal_200M_uint64
-RMICppRobust,5,521.284,49184,37264453045,BinarySearch,lognormal_200M_uint64
-RMICppRobust,6,505.5,98336,37278962040,BinarySearch,lognormal_200M_uint64
-RMICppRobust,7,409.204,196640,37320418823,BinarySearch,lognormal_200M_uint64
-RMICppRobust,8,352.541,393248,37188764365,BinarySearch,lognormal_200M_uint64
-RMICppRobust,9,323.537,786464,37202215565,BinarySearch,lognormal_200M_uint64
-RMICppRobust,10,255.471,1572896,37141818375,BinarySearch,lognormal_200M_uint64
 Wormhole,512,1059.01,12499968,3496,BinarySearch,lognormal_200M_uint64
 Wormhole,1024,1008.03,6249984,1563,BinarySearch,lognormal_200M_uint64
 Wormhole,2048,977.283,3124992,1252,BinarySearch,lognormal_200M_uint64

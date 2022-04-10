@@ -83,16 +83,6 @@ ALEX,1024,535.998,9073056,48679535,BinarySearch,books_400M_uint64
 ALEX,2048,567.913,4566496,24061732,BinarySearch,books_400M_uint64
 ALEX,4096,617.295,2288632,11062730,BinarySearch,books_400M_uint64
 ALEX,8192,670.541,1155816,5570720,BinarySearch,books_400M_uint64
-RMICppRobust,1,508.516,3104,74929153234,BinarySearch,books_400M_uint64
-RMICppRobust,2,462.137,6176,75035221427,BinarySearch,books_400M_uint64
-RMICppRobust,3,431.322,12320,74821282214,BinarySearch,books_400M_uint64
-RMICppRobust,4,404.037,24608,74919730793,BinarySearch,books_400M_uint64
-RMICppRobust,5,390.055,49184,74926642570,BinarySearch,books_400M_uint64
-RMICppRobust,6,373.478,98336,74742869386,BinarySearch,books_400M_uint64
-RMICppRobust,7,360.037,196640,75032039526,BinarySearch,books_400M_uint64
-RMICppRobust,8,347.979,393248,75002690144,BinarySearch,books_400M_uint64
-RMICppRobust,9,336.477,786464,74883781666,BinarySearch,books_400M_uint64
-RMICppRobust,10,324.555,1572896,74989387666,BinarySearch,books_400M_uint64
 Wormhole,512,1169.33,24999968,4072,BinarySearch,books_400M_uint64
 Wormhole,1024,1108.97,12499968,1645,BinarySearch,books_400M_uint64
 Wormhole,2048,1065.87,6249984,1339,BinarySearch,books_400M_uint64

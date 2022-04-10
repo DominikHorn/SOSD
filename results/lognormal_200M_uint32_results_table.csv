@@ -63,16 +63,6 @@ ALEX,1024,505.727,3468936,48287885,BinarySearch,lognormal_200M_uint32
 ALEX,2048,541.019,1767328,25459689,BinarySearch,lognormal_200M_uint32
 ALEX,4096,595.814,912608,13677771,BinarySearch,lognormal_200M_uint32
 ALEX,8192,651.549,460512,6815357,BinarySearch,lognormal_200M_uint32
-RMICppRobust,1,596.999,3104,37030310869,BinarySearch,lognormal_200M_uint32
-RMICppRobust,2,485.042,6176,37030145244,BinarySearch,lognormal_200M_uint32
-RMICppRobust,3,418.825,12320,37029958947,BinarySearch,lognormal_200M_uint32
-RMICppRobust,4,347.637,24608,37031690893,BinarySearch,lognormal_200M_uint32
-RMICppRobust,5,287.395,49184,37022657123,BinarySearch,lognormal_200M_uint32
-RMICppRobust,6,234.771,98336,36988756838,BinarySearch,lognormal_200M_uint32
-RMICppRobust,7,204.831,196640,36946056781,BinarySearch,lognormal_200M_uint32
-RMICppRobust,8,180.775,393248,36935055651,BinarySearch,lognormal_200M_uint32
-RMICppRobust,9,182.606,786464,36924770357,BinarySearch,lognormal_200M_uint32
-RMICppRobust,10,185.374,1572896,36922906575,BinarySearch,lognormal_200M_uint32
 RBS,28,200.279,1073741828,522530821,BinarySearch,lognormal_200M_uint32
 RBS,26,249.896,268435460,312458915,BinarySearch,lognormal_200M_uint32
 RBS,24,300.973,67108868,275153576,BinarySearch,lognormal_200M_uint32

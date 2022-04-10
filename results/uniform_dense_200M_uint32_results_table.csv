@@ -73,16 +73,6 @@ ALEX,1024,453.125,3383296,1740273,BinarySearch,uniform_dense_200M_uint32
 ALEX,2048,505.17,1691760,866510,BinarySearch,uniform_dense_200M_uint32
 ALEX,4096,558.486,845980,434715,BinarySearch,uniform_dense_200M_uint32
 ALEX,8192,612.929,423096,223339,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,1,43.8167,3104,36386801002,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,2,43.9494,6176,36388884547,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,3,44.244,12320,36388149091,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,4,44.522,24608,36384964006,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,5,44.6,49184,36395173351,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,6,44.8006,98336,36400939975,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,7,45.517,196640,36412353652,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,8,47.5409,393248,36418307936,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,9,49.6452,786464,36422733164,BinarySearch,uniform_dense_200M_uint32
-RMICppRobust,10,51.1738,1572896,36446896916,BinarySearch,uniform_dense_200M_uint32
 Wormhole,512,1016.26,10937472,4060,BinarySearch,uniform_dense_200M_uint32
 Wormhole,1024,963.302,5468736,981,BinarySearch,uniform_dense_200M_uint32
 Wormhole,2048,950.228,2734368,816,BinarySearch,uniform_dense_200M_uint32
