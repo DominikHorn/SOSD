@@ -40,16 +40,16 @@ class XIndexR : public Competitor {
   }
 
   SearchBound EqualityLookup(const KeyType lookup_key) const {
-    KeyType key;
-    size_t index;
-    if (!xindex_ptr_->get(key, index, 0)) return (SearchBound){0, data_size_};
+    // lowerbound lookup to find first key >= sought key
+    std::vector<std::pair<KeyType, size_t>> result;
+    if (xindex_ptr_->scan(lookup_key, 1, result, 0) != 0)
+      return (SearchBound){0, data_size_};
+    const auto pred = result.front().second;
 
     const uint64_t error = size_scale - 1;
-
-    const uint64_t start = index < error ? 0 : index - error;
-    const uint64_t stop = index + 1 > data_size_
-                              ? data_size_
-                              : index + 1;  // stop is exclusive (that's why +1)
+    const uint64_t start = pred - std::min(pred, error);
+    // +1 since stop is exclusive
+    const uint64_t stop = std::min(pred + 1, data_size_);
 
     return (SearchBound){start, stop};
   }
