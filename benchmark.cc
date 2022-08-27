@@ -16,6 +16,7 @@
 #include "benchmarks/benchmark_rs.h"
 #include "benchmarks/benchmark_ts.h"
 #include "benchmarks/benchmark_wormhole.h"
+#include "benchmarks/benchmark_xindexr.h"
 #include "competitors/binary_search.h"
 #include "competitors/hash.h"
 #include "competitors/stanford_hash.h"
@@ -65,6 +66,7 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
 #endif
   check_only("Wormhole", benchmark_32_wormhole(benchmark, pareto));
 #endif
+  check_only("XIndexR", benchmark_32_xindex_r(benchmark, pareto));
 
   if (benchmark.uses_binary_search()) {
     check_only("RBS", benchmark_32_rbs(benchmark, pareto));
@@ -95,6 +97,7 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
 #endif
   check_only("Wormhole", benchmark_64_wormhole(benchmark, pareto));
 #endif
+  check_only("XIndexR", benchmark_64_xindex_r(benchmark, pareto));
 
   if (benchmark.uses_binary_search()) {
     check_only("RBS", benchmark_64_rbs(benchmark, pareto));
