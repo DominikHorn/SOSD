@@ -108,9 +108,7 @@ class XIndexR : public Competitor {
 
   std::string name() const { return "XIndex-R"; }
 
-  std::size_t size() const {
-    // TODO(dominik): implement. This will likely require patching XIndex-R's
-    // source code unfortunately
-    return -1;
-  }
+  std::size_t size() const { return xindex_ptr_->byte_size(); }
+
+  int variant() const { return size_scale; }
 };
