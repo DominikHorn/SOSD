@@ -1,4 +1,7 @@
-#! /usr/bin/env bash
+#!/bin/bash
+
+set -e
+
 git submodule update --init --recursive
 
 mkdir -p rmi_data
