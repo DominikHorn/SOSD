@@ -30,4 +30,4 @@
 	url = https://github.com/alhuan/analysis-rmi.git
 [submodule "competitors/xindex"]
 	path = competitors/xindex
-	url = https://ipads.se.sjtu.edu.cn:1312/opensource/xindex.git
+	url = https://github.com/DominikHorn/xindex-sosd.git
