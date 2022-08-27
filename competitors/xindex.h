@@ -6,9 +6,61 @@
 #include "xindex/XIndex-R/xindex.h"
 #include "xindex/XIndex-R/xindex_impl.h"
 
-template <class KeyType, int size_scale>
+template <class SOSDKey, int size_scale>
 class XIndexR : public Competitor {
-  using XIndexType = xindex::XIndex<KeyType, size_t>;
+  class XIndexKey {
+    typedef std::array<double, 1> model_key_t;
+
+   public:
+    static constexpr size_t model_key_size() { return 1; }
+
+    static XIndexKey max() {
+      static XIndexKey max_key(std::numeric_limits<SOSDKey>::max());
+      return max_key;
+    }
+
+    static XIndexKey min() {
+      static XIndexKey min_key(std::numeric_limits<SOSDKey>::min());
+      return min_key;
+    }
+
+    XIndexKey() : key(0) {}
+    XIndexKey(SOSDKey key) : key(key) {}
+    XIndexKey(const XIndexKey& other) { key = other.key; }
+    XIndexKey& operator=(const XIndexKey& other) {
+      key = other.key;
+      return *this;
+    }
+
+    model_key_t to_model_key() const {
+      model_key_t model_key;
+      model_key[0] = key;
+      return model_key;
+    }
+
+    friend bool operator<(const XIndexKey& l, const XIndexKey& r) {
+      return l.key < r.key;
+    }
+    friend bool operator>(const XIndexKey& l, const XIndexKey& r) {
+      return l.key > r.key;
+    }
+    friend bool operator>=(const XIndexKey& l, const XIndexKey& r) {
+      return l.key >= r.key;
+    }
+    friend bool operator<=(const XIndexKey& l, const XIndexKey& r) {
+      return l.key <= r.key;
+    }
+    friend bool operator==(const XIndexKey& l, const XIndexKey& r) {
+      return l.key == r.key;
+    }
+    friend bool operator!=(const XIndexKey& l, const XIndexKey& r) {
+      return l.key != r.key;
+    }
+
+    SOSDKey key;
+  } PACKED;
+
+  using XIndexType = xindex::XIndex<XIndexKey, size_t>;
   std::unique_ptr<XIndexType> xindex_ptr_;
 
   size_t data_size_;
@@ -16,9 +68,9 @@ class XIndexR : public Competitor {
  public:
   XIndexR() {}
 
-  uint64_t Build(const std::vector<KeyValue<KeyType>>& data) {
+  uint64_t Build(const std::vector<KeyValue<SOSDKey>>& data) {
     const auto N = data.size() / size_scale;
-    std::vector<KeyType> keys;
+    std::vector<XIndexKey> keys;
     std::vector<size_t> indices;
 
     keys.reserve(N);
@@ -39,9 +91,9 @@ class XIndexR : public Competitor {
     });
   }
 
-  SearchBound EqualityLookup(const KeyType lookup_key) const {
+  SearchBound EqualityLookup(const SOSDKey lookup_key) const {
     // lowerbound lookup to find first key >= sought key
-    std::vector<std::pair<KeyType, size_t>> result;
+    std::vector<std::pair<XIndexKey, size_t>> result;
     if (xindex_ptr_->scan(lookup_key, 1, result, 0) != 0)
       return (SearchBound){0, data_size_};
     const auto pred = result.front().second;
@@ -57,8 +109,8 @@ class XIndexR : public Competitor {
   std::string name() const { return "XIndex-R"; }
 
   std::size_t size() const {
-    // TODO(dominik): implement. This will require patching XIndex-R's source
-    // code unfortunately
+    // TODO(dominik): implement. This will likely require patching XIndex-R's
+    // source code unfortunately
     return -1;
   }
-}
+};

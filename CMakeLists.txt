@@ -67,8 +67,16 @@ target_include_directories(benchmark
         PRIVATE "competitors/rs/include"
         PRIVATE "competitors/stx-btree-0.9/include"
         PRIVATE "competitors/ts/include"
-        PRIVATE "fast64")
+        PRIVATE "fast64"
+        PRIVATE $<TARGET_PROPERTY:MKL::MKL,INTERFACE_INCLUDE_DIRECTORIES>
+)
 add_dependencies(benchmark libfast64)
+
+# Add intel mkl - neccessary for xindex
+find_package(MKL CONFIG REQUIRED)
+message(STATUS "${MKL_IMPORTED_TARGETS}")
+target_compile_options(benchmark PUBLIC $<TARGET_PROPERTY:MKL::MKL,INTERFACE_COMPILE_OPTIONS>)
+target_link_libraries(benchmark PUBLIC $<LINK_ONLY:MKL::MKL>)
 
 if (${LINUX})
     target_include_directories(benchmark PRIVATE "wormhole")
