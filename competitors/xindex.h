@@ -89,11 +89,11 @@ class XIndexR : public Competitor {
       xindex_ptr_ = std::make_unique<XIndexType>(keys, indices,
                                                  /*worker_num=*/1, /*bg_n=*/0);
 
-      // The interface we're using suggests that it does a batch insert. Just to
-      // be sure we reach an optimal xindex setup, force the (normally
-      // background) reaping manually. If nothing has to be done, this will be
-      // fast
-      xindex_ptr_->force_adjustment_sync();
+      // The interface we're using suggests that it does a batch insert. Ideally
+      // we'd want to force adjustment just to be sure we have the optimal
+      // xindex setup. Unfortunately however, this seems to take exponentially
+      // longer than the construction itself.
+      // xindex_ptr_->force_adjustment_sync();
     });
   }
 
