@@ -88,6 +88,12 @@ class XIndexR : public Competitor {
     return util::timing([&]() {
       xindex_ptr_ = std::make_unique<XIndexType>(keys, indices,
                                                  /*worker_num=*/1, /*bg_n=*/0);
+
+      // The interface we're using suggests that it does a batch insert. Just to
+      // be sure we reach an optimal xindex setup, force the (normally
+      // background) reaping manually. If nothing has to be done, this will be
+      // fast
+      xindex_ptr_->force_adjustment_sync();
     });
   }
 
@@ -108,7 +114,13 @@ class XIndexR : public Competitor {
 
   std::string name() const { return "XIndex-R"; }
 
-  std::size_t size() const { return xindex_ptr_->byte_size(); }
+  std::size_t size() const {
+    // byte_size() counts some allocated regions twice. We trust the global
+    // counter to be more accurate for now
+    // return xindex_ptr_->byte_size();
+
+    return xindex::_::allocated_bytes;
+  }
 
   int variant() const { return size_scale; }
 };
