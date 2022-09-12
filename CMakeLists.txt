@@ -70,6 +70,13 @@ target_include_directories(benchmark
         PRIVATE "fast64")
 add_dependencies(benchmark libfast64)
 
+# FINEdex
+include(${PROJECT_SOURCE_DIR}/competitors/finedex/finedex.cmake)
+find_package(MKL CONFIG REQUIRED)
+target_compile_options(benchmark PRIVATE $<TARGET_PROPERTY:MKL::MKL,INTERFACE_COMPILE_OPTIONS>)
+target_link_libraries(benchmark PRIVATE $<LINK_ONLY:MKL::MKL> ${FINEDEX_LIBRARY})
+
+
 if (${LINUX})
     target_include_directories(benchmark PRIVATE "wormhole")
     target_link_libraries(benchmark PRIVATE ${CMAKE_SOURCE_DIR}/wormhole/libwh.so)

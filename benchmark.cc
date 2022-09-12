@@ -7,6 +7,7 @@
 #include "benchmarks/benchmark_btree.h"
 #include "benchmarks/benchmark_cht.h"
 #include "benchmarks/benchmark_fast64.h"
+#include "benchmarks/benchmark_finedex.h"
 #include "benchmarks/benchmark_fst.h"
 #include "benchmarks/benchmark_ibtree.h"
 #include "benchmarks/benchmark_pgm.h"
@@ -50,6 +51,7 @@ void execute_32_bit(Benchmark benchmark, bool pareto, bool only_mode,
                     std::string only, std::string filename) {
   // Build and probe individual indexes.
   check_only("RMI", benchmark_32_rmi(benchmark, pareto, filename));
+  check_only("FINEdex", benchmark_32_finedex(benchmark, pareto));
   check_only("RS", benchmark_32_rs(benchmark, pareto));
   check_only("TS", benchmark_32_ts(benchmark, pareto));
   check_only("PGM", benchmark_32_pgm(benchmark, pareto));
@@ -79,6 +81,7 @@ void execute_64_bit(Benchmark benchmark, bool pareto, bool only_mode,
                     std::string only, std::string filename) {
   // Build and probe individual indexes.
   check_only("RMI", benchmark_64_rmi(benchmark, pareto, filename));
+  check_only("FINEdex", benchmark_64_finedex(benchmark, pareto));
   check_only("RS", benchmark_64_rs(benchmark, pareto));
   check_only("TS", benchmark_64_ts(benchmark, pareto));
   check_only("PGM", benchmark_64_pgm(benchmark, pareto));
