@@ -98,7 +98,6 @@ class XIndexR : public Competitor {
   }
 
   SearchBound EqualityLookup(const SOSDKey lookup_key) const {
-    // lowerbound lookup to find first key >= sought key
     std::vector<std::pair<XIndexKey, size_t>> result;
     if (xindex_ptr_->scan(lookup_key, 1, result, 0) != 0)
       return (SearchBound){0, data_size_};
