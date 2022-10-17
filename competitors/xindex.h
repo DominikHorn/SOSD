@@ -92,7 +92,8 @@ class XIndexR : public Competitor {
       // The interface we're using suggests that it does a batch insert. Ideally
       // we'd want to force adjustment just to be sure we have the optimal
       // xindex setup. Unfortunately however, this seems to take exponentially
-      // longer than the construction itself.
+      // longer than the construction itself. (never observed to finish on a
+      // 200M item data set)
       // xindex_ptr_->force_adjustment_sync();
     });
   }
@@ -114,11 +115,13 @@ class XIndexR : public Competitor {
   std::string name() const { return "XIndex-R"; }
 
   std::size_t size() const {
-    // byte_size() counts some allocated regions twice. We trust the global
-    // counter to be more accurate for now
-    // return xindex_ptr_->byte_size();
+    const auto size = xindex_ptr_->byte_size();
 
-    return xindex::_::allocated_bytes;
+    std::cout << "ALLOCATED: " << xindex::_::allocated_bytes << std::endl;
+    std::cout << "ACTIVE: " << size.allocated << std::endl;
+    std::cout << "USED: " << size.used << std::endl;
+
+    return size.allocated;
   }
 
   int variant() const { return size_scale; }
