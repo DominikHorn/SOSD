@@ -6,7 +6,7 @@
 #include "xindex/XIndex-R/xindex.h"
 #include "xindex/XIndex-R/xindex_impl.h"
 
-template <class SOSDKey, int size_scale>
+template <class SOSDKey>
 class XIndexR : public Competitor {
   class XIndexKey {
     typedef std::array<double, 1> model_key_t;
@@ -69,7 +69,7 @@ class XIndexR : public Competitor {
   XIndexR() {}
 
   uint64_t Build(const std::vector<KeyValue<SOSDKey>>& data) {
-    const auto N = data.size() / size_scale;
+    const auto N = data.size();
     std::vector<XIndexKey> keys;
     std::vector<size_t> indices;
 
@@ -78,7 +78,6 @@ class XIndexR : public Competitor {
 
     for (const auto& iter : data) {
       uint64_t idx = iter.value;
-      if (size_scale > 1 && idx % size_scale != 0) continue;
 
       keys.push_back(iter.key);
       indices.push_back(idx);
@@ -100,16 +99,15 @@ class XIndexR : public Competitor {
 
   SearchBound EqualityLookup(const SOSDKey lookup_key) const {
     std::vector<std::pair<XIndexKey, size_t>> result;
+
+    // since we inserted every key, this should never happen.
     if (xindex_ptr_->scan(lookup_key, 1, result, 0) != 0)
       return (SearchBound){0, data_size_};
+
     const auto pred = result.front().second;
 
-    const uint64_t error = size_scale - 1;
-    const uint64_t start = pred - std::min(pred, error);
     // +1 since stop is exclusive
-    const uint64_t stop = std::min(pred + error + 1, data_size_);
-
-    return (SearchBound){start, stop};
+    return (SearchBound){pred, pred + 1};
   }
 
   std::string name() const { return "XIndex-R"; }
@@ -124,5 +122,6 @@ class XIndexR : public Competitor {
     return size.allocated;
   }
 
-  int variant() const { return size_scale; }
+  // there is no variant support
+  int variant() const { return 0; }
 };
