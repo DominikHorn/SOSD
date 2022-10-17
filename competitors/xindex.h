@@ -107,7 +107,7 @@ class XIndexR : public Competitor {
     const uint64_t error = size_scale - 1;
     const uint64_t start = pred - std::min(pred, error);
     // +1 since stop is exclusive
-    const uint64_t stop = std::min(pred + 1, data_size_);
+    const uint64_t stop = std::min(pred + error + 1, data_size_);
 
     return (SearchBound){start, stop};
   }
